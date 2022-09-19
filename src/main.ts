@@ -11,9 +11,14 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true, /* Solo las propiedades que estan en el DTO, pero tambien las demas se envian */
       forbidNonWhitelisted: true, /* Esta obliga a enviar tal cual como está definida */
+      transform: true, /* Transformar la data que viaja por el DTO */
+      transformOptions: {
+        enableImplicitConversion: true,
+      }
     })
   );
 
-  await app.listen(3000);
+  await app.listen( process.env.PORT );
+  console.log(`App running on port: ${ process.env.PORT }`);
 }
 bootstrap();
