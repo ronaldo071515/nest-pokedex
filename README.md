@@ -35,10 +35,28 @@ http://localhost:3000/api/v2/seed
 * MongoDB
 * Nest
 
+# Production Build
+1. Crear el archivo ```.env.prod```
+2. Llenar las variables de entorno para prod
+3. Construir __(build)__ la nueva imagen
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+4. Levantar __run__ la aplicaión
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up
+```
 
 # Notas
-Heroku redeploy sin cambios
+1. Heroku redeploy sin cambios
 ````
 git commit --allow-emty -m "Trigger Heroku deploy"
 git push heroku <master|main>
+````
+
+2. Por defecto, docker-compose usa el archivo .env, por lo que si tienen el archivo .env y lo configuran con sus variables de entorno de producción, bastaría con
+
+```
+docker-compose -f docker-compose.prod.yaml up --build
+
 ```
